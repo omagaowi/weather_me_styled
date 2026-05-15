@@ -17,6 +17,7 @@ import { toPng } from "html-to-image";
 import { ForecastGrid, StatGrid } from "./details";
 import Skeleton from "./skeleton";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 const LinkBar = styled.div`
   width: 100%;
@@ -114,11 +115,11 @@ const Share = () => {
   const [reportLoading, setReportLoading] = useState<boolean>(false);
   const [report, setReport] = useState<ReportType | null>(null);
 
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const queryParams = new URLSearchParams(location.search);
+  const queryParams = new URLSearchParams(location.search);
 
-  const report_id = null;
+   const report_id = queryParams.get("share");
 
   const downloadImage = (blob: string, fileName: string) => {
     const link = document.createElement("a");
@@ -224,14 +225,14 @@ const Share = () => {
       <LinkBar>
         <div className="text">
           {report && (
-            <p>https://weather-me-pink.vercel.app/?share={report.report_id}</p>
+            <p>https://weather-me-styled.vercel.app/?share={report.report_id}</p>
           )}
         </div>
         <Clipboard
           color="#C6D5DB"
           size={14}
           onClick={() => {
-            const text = `https://weather-me-pink.vercel.app/?share=${report.report_id}`;
+            const text = `https://weather-me-styled.vercel.app/?share=${report.report_id}`;
             copyToClipboard(text)
               .then((data) => {
                 toast.success("copied to clipboard");

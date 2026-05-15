@@ -8,6 +8,7 @@ import {
 import Skeleton from "./skeleton";
 import RenderWeatherIcon from "./renderWeather";
 import { formatDate } from "../utils/dateFormat";
+import { useNavigate } from "react-router-dom";
 
 export const StatGrid = styled.div`
   width: 100%;
@@ -98,7 +99,7 @@ export const ForecastGrid = styled.div`
 
 const Details = () => {
   const { activeWeather, setActiveWeather } = useWeather();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const metricItems = [
     {
       label: "Temperature",

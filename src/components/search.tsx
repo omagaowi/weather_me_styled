@@ -19,6 +19,7 @@ import Skeleton from "./skeleton";
 import { loadWeather } from "../utils/load_weather";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = styled.form`
   width: 100%;
@@ -137,7 +138,7 @@ const Search = () => {
     setSideState,
   } = useWeather();
 
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const searchPlaces = async () => {
     const { data, error } = await tryCatch(
@@ -217,7 +218,7 @@ const Search = () => {
                     className="card"
                     key={item.place_id ?? idx}
                     onClick={() => {
-                      //   navigate("/");
+                        navigate("/");
                       const searchHistory = JSON.parse(
                         localStorage.getItem("searches") ?? "[]",
                       ) as SearchResult[];
