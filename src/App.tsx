@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { loadWeather } from "./utils/load_weather";
 import toast, { Toaster } from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 export const root_url = "https://weather-me-api-bd36.vercel.app/api/v1";
 
@@ -31,7 +32,11 @@ function App() {
 
   // console.log(activeWeather);
 
-  const report_id = null;
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const report_id = queryParams.get("share");
 
   const loadReport = async (report_id: string) => {
     const { data, error } = await tryCatch(
